@@ -28,5 +28,9 @@ export class DishService {
 
   }
 
+  getDishId(): Observable<string[] | any> {
+    return of(DISHES.map(dish => dish.id));
+  }
+
 
 }
