@@ -35,6 +35,12 @@ import { LeaderService } from './services/leader.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
+import { HttpClientModule } from '@angular/common/http';
+
+import {MatSliderModule} from '@angular/material/slider';
+import { baseURL } from './shared/baseurl';
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +71,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    HttpClientModule,
+    HttpModule
 
 
   ],
@@ -73,7 +82,8 @@ import { MatDialogModule } from '@angular/material/dialog';
       LoginComponent
   ],
   providers: [
-    DishService, PromotionService, LeaderService
+    DishService, PromotionService, LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent]
 })
