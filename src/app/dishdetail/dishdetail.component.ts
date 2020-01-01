@@ -43,6 +43,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   comment: Comment;
+  errMess: string;
   @ViewChild('fform') commentFormDirective;
   constructor(private dishService: DishService,
     private location: Location, private route: ActivatedRoute, 
@@ -55,7 +56,8 @@ export class DishdetailComponent implements OnInit {
 
     this.dishService.getDishId().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+    errMess => this.errMess=<any>errMess);
   }
   setPrevNext(dishId: string) {
     const index = this.dishIds.indexOf(dishId);
